@@ -1,8 +1,7 @@
 "use strict";
 module.exports = grunt => {
-  //I load the grunt dependencies
+  //Loading our dependencies
   require("load-grunt-tasks")(grunt);
-
   grunt.initConfig({
     prettier: {
       options: {
@@ -17,13 +16,13 @@ module.exports = grunt => {
       options: {
         configFile: "./.eslintrc.json"
       },
-      target: ["./**.js"]
+      target: ["./services/**.js"]
     }
   });
 
-  //registrando task
-  grunt.registerTask("pre-commit", "Formatting the code", () => {
-    let tasks = [ "eslint"];
+  //Registering tasks
+  grunt.registerTask("pre-commit", "Linting our code", () => {
+    let tasks = ["prettier", "eslint"];
     grunt.log.writeln("Beautifying...");
     tasks.forEach(task => {
       grunt.log.writeln("Step " + task);

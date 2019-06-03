@@ -1,26 +1,3 @@
-import express from 'express';
-import uuidv4 from 'uuid/v4';
-import { ApolloServer} from 'apollo-server-express';
-import cors from 'cors';
-
-import schema from './schemas/schema';
-import resolvers from './resolvers/resolver';
-import models from './models';
-
-const app = express();
-app.use(cors());
-
-const server = new ApolloServer({
-    typeDefs: schema,
-    resolvers,
-    context: {
-      models,
-      me: models.users[1],
-    },
-});
-
-server.applyMiddleware({ app, path: '/graphql' });
-
-app.listen({ port: 8000 }, () => {
-  console.log('Apollo Server on http://localhost:8000/graphql');
-});
+import { Server } from "./server/server";
+const server = Server();
+server.start;
