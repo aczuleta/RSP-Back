@@ -1,6 +1,6 @@
 import {matchResultModel} from './model';
-import {matchResultRepository}  from './repository';
-const resultRepository = matchResultRepository();
+import {MatchResultRepository}  from './repository';
+const resultRepository = MatchResultRepository();
 
 export default { 
     Query: {

@@ -3,19 +3,25 @@ import {Db} from './db';
 import {messages as GlobalMessages}  from './globalMessages';
 import * as _  from 'lodash';
 
+const db =  Db();
 //Factory Function for a generic Data Repository
 export const dataRepository = (table) => {
-    
-    const connection = Db().connect(table);
+       
+    let connection = db.connect(table);
 
     function getConnection(){
         return connection;
     }
 
+    function getRawConnection(){
+        return db.rawConnection();
+    }
+
     //Generic create operation
     async function create(obj) {
         return new Promise((resolve, reject) => {
-                connection.returning('id').insert(obj)
+                let knex = connection;
+                knex.insert(obj)
                 .then((rows) => {
                     resolve(rows[0]);
                 })
@@ -160,7 +166,8 @@ export const dataRepository = (table) => {
     return {
         create,
         getConnection,
-        retrieve
+        retrieve,
+        getRawConnection
     }
     
 

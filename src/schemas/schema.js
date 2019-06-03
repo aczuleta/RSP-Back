@@ -6,6 +6,8 @@ import messageSchema from './message';
 
 import matchResultSchema from '../services/match_results/schema';
 import playerSummarySchema from '../services/player_summary/schema';
+import moveSchema from '../services/moves/schema';
+import rulesetSchema from '../services/ruleset/schema';
 
 
 const dirServices = '../services';
@@ -24,4 +26,4 @@ const linkSchema = gql`
 `;
 
 let exports = [linkSchema];
-export default [linkSchema, userSchema, messageSchema, matchResultSchema, playerSummarySchema ];
+export default [linkSchema, userSchema, messageSchema, matchResultSchema, playerSummarySchema, moveSchema, rulesetSchema];

@@ -1,6 +1,6 @@
 import {playerSummaryModel} from './model';
-import {playerSummaryRepository}  from './repository';
-const summaryRepository = playerSummaryRepository();
+import {PlayerSummaryRepository}  from './repository';
+const summaryRepository = PlayerSummaryRepository();
 
 export default {
     Query: {
@@ -8,10 +8,10 @@ export default {
             try{
                 let result = [];
                 let summaries = await summaryRepository.getPlayerSummaries();
-                for(let summary of summaries){
+                summaries.forEach(summary => {
                     let current = playerSummaryModel(summary.winner, summary.total);
                     result.push(current);
-                }
+                });
                 return result;
             }catch(err){
                 throw err;

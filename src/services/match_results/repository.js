@@ -1,13 +1,15 @@
 import {dataRepository} from '../../utils/dataRepository';
+import {queries} from './queries';
 
-export const matchResultRepository = () => {
+const matchResultRepository = dataRepository("match");
 
-    const matchResultRepository = dataRepository("match");
+export const MatchResultRepository = () => {
 
     async function createMatchResult(result){
         try{
-            let newResult = await matchResultRepository.create(result);
-            return newResult;
+            let newResult = matchResultRepository.getRawConnection();
+            newResult = await newResult.raw(queries.insert_match_result, [...Object.values(result)]);
+            return newResult[0].insertId;
         } catch(err){
             throw err;
         }

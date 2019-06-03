@@ -1,8 +1,7 @@
 import {dataRepository} from '../../utils/dataRepository';
+const playerSummaryRepository = dataRepository("match");
 
-export const playerSummaryRepository = () => {
-
-    const playerSummaryRepository = dataRepository("match");
+export const PlayerSummaryRepository = () => {
 
     async function getPlayerSummaries(){
         try{
@@ -19,6 +18,6 @@ export const playerSummaryRepository = () => {
     }
 
     return {
-        getPlayerSummaries: getPlayerSummaries
+        getPlayerSummaries
     }
 }

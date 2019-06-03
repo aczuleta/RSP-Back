@@ -1,24 +1,26 @@
 'use strict';
-const  knex  =  require('knex');
-const Db = () => {
-    let host, user, password, database, connection;
+import  knex  from 'knex';
+require('dotenv').config();
 
-    function loadDb(){
-        host = "techtestdb.ck546wcxien1.us-west-2.rds.amazonaws.com"; //process.env.DB_HOST;
-        user = "root"; //process.env.DB_USER;
-        password = "r00tPasswd!"; //process.env.DB_PASSWORD;
-        database = "RPS"; //process.env.DB_DATABASE;
-        connection = null;
+let connection;
+const host = process.env.DB_HOST;
+const user = process.env.DB_USER;
+const password = process.env.DB_PASSWORD;
+const database = process.env.DB_DATABASE;
+
+const Db = () => {
+    function connect(table){ 
+        connection = knex(config())(table);
+
+        return connection;
+    };
+
+    function rawConnection(){
+        return knex(config());
     }
 
-    function connect(table){
-        /** 
-        if(connection){
-            throw Error("There is already an existing connection!");
-        }*/
-
-        loadDb();
-        connection = knex({
+    function config(){
+        return {
             client: 'mysql',
             connection: {
                 host: host,
@@ -29,13 +31,12 @@ const Db = () => {
                 dateStrings: 'date',
                 pool: { min: 0, max: 5 }
             }
-        })(table);
-
-        return connection;
-    };
+        }
+    }
 
     return {
-        connect: connect
+        connect,
+        rawConnection
     }
 
 }
