@@ -6,7 +6,8 @@ export default gql`
     }
 
     extend type Mutation {
-        createMove(name: String!, imageRoute: String, kills:[ID]): ID!
+        createMove(name: String!, imageRoute: String, kills:[ID]): ID!,
+        editMove(id:ID!, name:String!, imageRoute:String!, kills: [ID]!): ID!
     }
 
     type move {

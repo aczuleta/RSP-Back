@@ -12,21 +12,8 @@ let messages = {
 };
 
 const users = {
-    1: {
-      id: '1',
-      username: 'Robin Wieruch',
-      firstname: 'come',
-      lastname: 'vaginas',
-      messageIds: [1],
-    },
-    2: {
-      id: '2',
-      username: 'Dave Davids',
-      firstname: "mama",
-      lastname: "webo",
-      messageIds: [2]
-    },
-  };
+
+};
   
 export default {
     users,

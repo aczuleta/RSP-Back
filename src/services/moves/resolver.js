@@ -28,6 +28,15 @@ export default {
             }catch(err){
                 throw err;
             }
+        },
+        editMove: async (parent, {id, name, imageRoute, kills}, {models}) => {
+            try{
+                let result = moveModel(name, imageRoute, kills);
+                result = await matchResultRepository.editMove(id, result);
+                return result;
+            }catch(err){
+                throw err;
+            }
         }
     }
 };

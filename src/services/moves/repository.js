@@ -11,7 +11,7 @@ export const MatchResultRepository = () => {
     async function createMove(move){
         try{
             let url = move.imageRoute ? await movesFunction().uploadToS3(move.imageRoute, move.name) : "";
-            url = url.imageUrl;
+            url = url ? url.imageUrl : "";
             let sMove = simpleMove(move.name, url);
             
             let newMove = await moveRepository.getRawConnection().raw(queries.insert_move, [...Object.values(sMove)]);
@@ -20,14 +20,46 @@ export const MatchResultRepository = () => {
             
             if(move.kills){
                 move.kills.forEach( async (id) => {
-                    let killerMove = moveKiller(newMove, id);
+                    let killerMove = moveKiller(+newMove, +id);
                     await killsRepository
                     .getRawConnection()
                     .raw(queries.insert_killer_move, [...Object.values(killerMove)]);
                 });
             }
-            
+
             return newMove;
+        } catch(err){
+            throw err;
+        }
+    }
+
+    async function editMove(id, move){
+        try{
+            let url;
+
+            if(move.imageRoute.includes("data:image/png;base64")) {
+                url = await movesFunction().uploadToS3(move.imageRoute, move.name);
+                url = url.imageUrl;
+            } else {
+                url = move.imageRoute;
+            }
+
+            let sMove = simpleMove(move.name, url);
+            
+            let newMove = 
+            await moveRepository
+            .getRawConnection()
+            .raw(queries.update_move, [...Object.values(sMove), +id]);
+            
+            if(move.kills){
+                move.kills.forEach( async (idKilled) => {
+                    await killsRepository
+                    .getRawConnection()
+                    .raw(queries.update_killer_move, [+idKilled, +id]);
+                });
+            }
+    
+            return id;
         } catch(err){
             throw err;
         }
@@ -44,6 +76,7 @@ export const MatchResultRepository = () => {
 
     return {
         getMoves,
-        createMove
+        createMove,
+        editMove
     }
 }

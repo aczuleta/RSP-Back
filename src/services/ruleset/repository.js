@@ -53,10 +53,10 @@ export const RulesetRepository = () => {
             results.forEach( move => {
                 if(flag != move.id_killer) {
                     flag = move.id_killer;
-                    result.moves.push(moveModel(move.move_killer, move.image_route, [moveModel(move.move_killer, "", [])], move.id_killer));
+                    result.moves.push(moveModel(move.move_killer, move.image_route, [moveModel(move.move_killed, "", [])], move.id_killer));
                 }
                 else {
-                    result.moves[result.moves.length - 1].kills.push(moveModel(move.move_killer, "", []));
+                    result.moves[result.moves.length - 1].kills.push(moveModel(move.move_killed, "", []));
                 }
             });
 
