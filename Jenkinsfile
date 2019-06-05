@@ -19,7 +19,7 @@ pipeline {
  			echo "building my app"
 			echo $GIT_URL
 			echo $PWD
-			docker build -t aczuleta10/rps-back . --build-arg db_host=$DB_HOST --build-arg db_user=$DB_USER --build-arg db_passwd=$DB_PASSWD --build-arg db_db =$DB_DB --build-arg aws_key=$AWS_KEY --build-arg aws_key=$AWS_SECRET 
+			docker build -t aczuleta10/rps-back --build-arg db_host=$DB_HOST --build-arg db_user=$DB_USER --build-arg db_passwd=$DB_PASSWD --build-arg db_db=$DB_DB --build-arg aws_key=$AWS_KEY --build-arg aws_key=$AWS_SECRET . 
 		   '''
             }
         }
