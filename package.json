@@ -12,6 +12,9 @@
     "build": "npm run-script clean && npm run-script build-server",
     "serve": "node dist/index.js"
   },
+  "engines": {
+    "node": "^8.11.1"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "grunt pre-commit"
@@ -50,7 +53,6 @@
     "eslint": "^5.16.0",
     "grunt": "^1.0.4",
     "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-jasmine": "^2.0.3",
     "grunt-eslint": "^21.0.0",
     "grunt-json-format": "^2.0.1",
     "grunt-prettier": "^1.2.0",
