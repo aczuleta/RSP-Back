@@ -11,7 +11,7 @@ RUN echo 'Finished installing dependencies'
 # Install npm production packages
 COPY ./package.json /app/
 
-RUN cd /app; npm install 
+RUN cd /app; npm --verbose install 
 
 COPY . /app
 
