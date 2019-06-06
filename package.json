@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run-script build && node ./dist/index.js",
+    "start": "npm run-script build && npm run-script serve",
     "restart": " nodemon --exec  babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist && mkdir dist",
     "build-server": "babel src --out-dir dist",
     "build": "npm run-script clean && npm run-script build-server",
-    "serve": "node dist/server.js"
+    "serve": "node dist/index.js"
   },
   "husky": {
     "hooks": {
@@ -31,10 +31,7 @@
     "helmet": "^3.18.0",
     "knex": "^0.17.3",
     "moment": "^2.24.0",
-    "mysql": "^2.17.1",
-    "pg": "^7.11.0",
-    "sequelize": "^5.8.6",
-    "uuid": "^3.3.2"
+    "mysql": "^2.17.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -56,14 +53,8 @@
     "grunt-contrib-jasmine": "^2.0.3",
     "grunt-eslint": "^21.0.0",
     "grunt-json-format": "^2.0.1",
-    "grunt-karma-sonar": "^0.2.29",
     "grunt-prettier": "^1.2.0",
     "husky": "^2.3.0",
-    "karma": "~0.12.0",
-    "karma-coverage": "~0.2.0",
-    "karma-jasmine": "~0.2.1",
-    "karma-junit-reporter": "~0.2.1",
-    "karma-phantomjs-launcher": "~0.1.2",
     "load-grunt-tasks": "^4.0.0",
     "nodemon": "^1.19.1",
     "prettier": "1.17.1"
