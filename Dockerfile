@@ -35,4 +35,4 @@ ENV DB_DATABASE=$db_db
 ENV AWS_KEY_ID=$aws_key
 ENV AWS_SECRET_KEY=$aws_secret
 
-CMD ["npm", "start"]
+CMD ["npm", "serve"]
