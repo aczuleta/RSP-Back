@@ -11,9 +11,9 @@ RUN echo 'Finished installing dependencies'
 # Install npm production packages
 COPY ./package.json /app/
 
-RUN cd /app; npm install --production
+RUN cd /app; npm install 
 
-COPY ./dist /app
+COPY . /app
 
 
 ENV NODE_ENV production
