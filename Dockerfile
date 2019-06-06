@@ -1,17 +1,18 @@
-FROM node:8.11.4-alpine
+FROM node:8-stretch
 
 # Change working directory
 WORKDIR "/app"
 
 # Update packages and install dependency packages for services
-RUN apk update 
-RUN apk upgrade --no-cache
-RUN echo 'Finished installing dependencies'
+RUN apt-get update \
+ && apt-get dist-upgrade -y \
+ && apt-get clean \
+ && echo 'Finished installing dependencies'
 
 # Install npm production packages
 COPY ./package.json /app/
 
-RUN cd /app; npm --verbose install --production
+RUN cd /app; npm --verbose install 
 
 COPY . /app
 
